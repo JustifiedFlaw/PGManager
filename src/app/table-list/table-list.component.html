@@ -1,5 +1,17 @@
 <div class="container">
-    <h3>Tables</h3>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Tables</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav">
+                    <a class="btn btn-outline-primary" routerLink="/connections/{{connectionId}}/tables/add" title="Add">+</a>
+                </div>
+            </div>
+        </div>
+    </nav>
     <table class="table table-striped">
         <thead>
             <th></th>
@@ -23,9 +35,4 @@
             </tr>
         </tbody>
     </table>
-    <div class="row">
-        <div class="p-2 col-12">
-            <a class="btn btn-primary" routerLink="/connections/{{connectionId}}/tables/add">Add</a>
-        </div>
-    </div>
 </div>
