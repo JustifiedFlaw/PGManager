@@ -11,6 +11,7 @@ import { UserNameDisplayComponent } from './user-name-display/user-name-display.
 import { BreadCrumbsComponent } from './bread-crumbs/bread-crumbs.component';
 import { ConnectionEditComponent } from './connection-edit/connection-edit.component';
 import { ConnectionDeleteComponent } from './connection-delete/connection-delete.component';
+import { ConnectionAddComponent } from './connection-add/connection-add.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ConnectionDeleteComponent } from './connection-delete/connection-delete
     UserNameDisplayComponent,
     BreadCrumbsComponent,
     ConnectionEditComponent,
-    ConnectionDeleteComponent
+    ConnectionDeleteComponent,
+    ConnectionAddComponent
   ],
   imports: [
     BrowserModule,

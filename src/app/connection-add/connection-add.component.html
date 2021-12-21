@@ -1,0 +1,52 @@
+<app-bread-crumbs [crumbs]="crumbs"></app-bread-crumbs>
+<form class="container" #form="ngForm">
+    <div class="row p-3">
+        <label class="form-label col-form-label col-sm-1" for="name">Name:</label>
+        <div class="col-sm-6">
+            <input id="name" name="name" type="text" class="form-control" [(ngModel)]="connection.connectionName" autofocus>
+        </div>
+    </div>
+    <div class="row p-3">
+        <label class="form-label col-form-label col-sm-1" for="host">Host:</label>
+        <div class="col-sm-6">
+            <input id="host" name="host" type="text" class="form-control" [(ngModel)]="connection.connectionHost">
+        </div>
+    </div>
+    <div class="row p-3">
+        <label class="form-label col-form-label col-sm-1" for="port">Port:</label>
+        <div class="col-sm-6">
+            <input id="port" name="port" type="number" class="form-control" [(ngModel)]="connection.connectionPort">
+        </div>
+        <!--Validator for port being a number-->
+    </div>
+    <div class="row p-3">
+        <label class="form-label col-form-label col-sm-1" for="database">Database:</label>
+        <div class="col-sm-6">
+            <input id="database" name="database" type="text" class="form-control" [(ngModel)]="connection.connectionDatabase">
+        </div>
+    </div>
+    <div class="row p-3">
+        <label class="form-label col-form-label col-sm-1" for="username">Username:</label>
+        <div class="col-sm-6">
+            <input id="username" name="username" type="text" class="form-control" [(ngModel)]="connection.connectionUsername">
+        </div>
+    </div>
+    <div class="row p-3">
+        <label class="form-label col-form-label col-sm-1" for="password">Password:</label>
+        <div class="col-sm-6">
+            <input id="password" name="password" type="password" class="form-control" [(ngModel)]="connection.connectionPassword">
+        </div>
+    </div>
+    <div class="row">
+        <div class="p-2 col-12">
+            <div class="btn-toolbar">
+                <div class="btn-group me-2">
+                    <a class="btn btn-secondary" routerLink="/connections">Cancel</a>
+                </div>
+                <div class="btn-group me-2">
+                    <button class="btn btn-primary" type="submit" (click)="add()">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
