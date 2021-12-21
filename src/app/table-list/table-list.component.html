@@ -14,8 +14,8 @@
     </nav>
     <table class="table table-striped">
         <thead>
-            <th></th>
-            <th></th>
+            <th class="buttonColumn"></th>
+            <th class="schemaColumn"></th>
             <th></th>
         </thead>
         <tbody>
@@ -23,10 +23,13 @@
                 <td>
                     <div class="btn-toolbar">
                         <div class="btn-group me-2">
-                            <a class="btn btn-outline-danger" href="/connections/{{connectionId}}/table/delete">X</a>
+                            <a class="btn btn-outline-danger" href="/connections/{{connectionId}}/table/delete" title="Drop Table">X</a>
                         </div>
                         <div class="btn-group me-2">
-                            <a class="btn btn-outline-primary" href="/connections/{{connectionId}}/table/schema/{{table.schemaName}}/{{table.tableName}}" title="View Schema"><i class="bi bi-pencil"></i></a>
+                            <a class="btn btn-outline-primary" href="/connections/{{connectionId}}/table/schema/{{table.schemaName}}/{{table.tableName}}" title="View Schema"><i class="bi bi-boxes"></i></a>
+                        </div>
+                        <div class="btn-group me-2">
+                            <a class="btn btn-outline-primary" href="/connections/{{connectionId}}/table/schema/{{table.schemaName}}/{{table.tableName}}/data" title="View Data"><i class="bi bi-table"></i></a>
                         </div>
                     </div>
                 </td>
