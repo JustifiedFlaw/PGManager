@@ -1,6 +1,6 @@
 <app-bread-crumbs [crumbs]="crumbs"></app-bread-crumbs>
 <p>
-    <app-database-list></app-database-list>
+    <app-database-list [currentDatabaseName]="connection?.connectionDatabase"></app-database-list>
 </p>
 <p>
     <app-table-list></app-table-list>

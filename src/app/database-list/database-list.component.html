@@ -17,7 +17,8 @@
             <th></th>
         </thead>
         <tbody>
-            <tr *ngFor="let database of databases">
+            <tr *ngFor="let database of databases" 
+                [ngClass]="{'table-primary' : database.name == currentDatabaseName}">
                 <td>{{database.name}}</td>
             </tr>
         </tbody>

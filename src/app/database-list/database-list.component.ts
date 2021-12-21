@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DatabaseService } from '../database.service';
 import { Database } from '../models/database';
@@ -10,6 +10,8 @@ import { Database } from '../models/database';
 })
 export class DatabaseListComponent implements OnInit {
   
+  @Input() currentDatabaseName?: string;
+
   connectionId: number = 0;
   databases: Database[] = [];
 
