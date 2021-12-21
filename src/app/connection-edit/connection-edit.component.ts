@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConnectionService } from '../connection.service';
+import { BreadCrumb } from '../models/bread-crumb';
 import { Connection } from '../models/connection';
 
 @Component({
@@ -11,6 +12,9 @@ import { Connection } from '../models/connection';
 export class ConnectionEditComponent implements OnInit {
 
   connection?: Connection;
+  crumbs: BreadCrumb[] = [
+    { url: '/connections', name: 'Connections' }
+  ];
 
   constructor(
     private connectionService: ConnectionService,
@@ -19,7 +23,12 @@ export class ConnectionEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.connectionService.get(this.route.snapshot.params.id)
-      .subscribe(connection => this.connection = connection);
+      .subscribe(connection => {
+        this.connection = connection
+        if (connection) {
+          this.crumbs.push({ url: null, name: connection.connectionName });
+        }
+      });
   }
 
   save(): void {
