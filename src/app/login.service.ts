@@ -9,7 +9,7 @@ import { catchError, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class LoginService {
-  private url = environment.apiUrl + "/auth";
+  private url = environment.apiUrl + "auth";
   storageName = "login";
 
   constructor(private http: HttpClient) { }
