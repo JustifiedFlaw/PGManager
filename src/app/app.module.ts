@@ -16,6 +16,7 @@ import { ConnectionOverviewComponent } from './connection-overview/connection-ov
 import { DatabaseListComponent } from './database-list/database-list.component';
 import { TableListComponent } from './table-list/table-list.component';
 import { DatabaseAddComponent } from './database-add/database-add.component';
+import { TableAddComponent } from './table-add/table-add.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DatabaseAddComponent } from './database-add/database-add.component';
     ConnectionOverviewComponent,
     DatabaseListComponent,
     TableListComponent,
-    DatabaseAddComponent
+    DatabaseAddComponent,
+    TableAddComponent
   ],
   imports: [
     BrowserModule,
