@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.user)
       .subscribe(result => {
         if (result) {
-          this.router.navigate(["/connections"]);      
+          this.router.navigate(["/"]);      
         }
         else {
           this.loginFailed = true;
