@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { ConnectionListComponent } from './connection-list/connection-list.component';
 import { UserNameDisplayComponent } from './user-name-display/user-name-display.component';
 import { BreadCrumbsComponent } from './bread-crumbs/bread-crumbs.component';
+import { ConnectionEditComponent } from './connection-edit/connection-edit.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { BreadCrumbsComponent } from './bread-crumbs/bread-crumbs.component';
     LoginComponent,
     ConnectionListComponent,
     UserNameDisplayComponent,
-    BreadCrumbsComponent
+    BreadCrumbsComponent,
+    ConnectionEditComponent
   ],
   imports: [
     BrowserModule,
