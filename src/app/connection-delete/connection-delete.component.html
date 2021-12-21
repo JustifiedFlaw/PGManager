@@ -1,0 +1,40 @@
+<form class="container" #form="ngForm">
+    <div *ngIf="connection">
+        <div class="row p-3">
+            <label class="form-label col-form-label col-sm-1" for="name">Name:</label>
+            <div class="col-sm-6">
+                <input id="name" name="name" type="text" class="form-control-plaintext" value="{{connection.connectionName}}" readonly>
+            </div>
+        </div>
+        <div class="row p-3">
+            <label class="form-label col-form-label col-sm-1" for="host">Host:</label>
+            <div class="col-sm-6">
+                <input id="host" name="host" type="text" class="form-control-plaintext" value="{{connection.connectionHost}}" readonly>
+            </div>
+        </div>
+        <div class="row p-3">
+            <label class="form-label col-form-label col-sm-1" for="database">Database:</label>
+            <div class="col-sm-6">
+                <input id="database" name="database" type="text" class="form-control-plaintext" value="{{connection.connectionDatabase}}" readonly>
+            </div>
+        </div>
+        <div class="row p-3">
+            <label class="form-label col-form-label col-sm-1" for="username">Username:</label>
+            <div class="col-sm-6">
+                <input id="username" name="username" type="text" class="form-control-plaintext" value="{{connection.connectionUsername}}" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="p-2 col-12">
+            <div class="btn-toolbar">
+                <div class="btn-group me-2">
+                    <a class="btn btn-secondary" routerLink="/connections">Cancel</a>
+                </div>
+                <div class="btn-group me-2" *ngIf="connection">
+                    <button class="btn btn-danger" (click)="delete(connection.id)">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -10,6 +10,7 @@ import { ConnectionListComponent } from './connection-list/connection-list.compo
 import { UserNameDisplayComponent } from './user-name-display/user-name-display.component';
 import { BreadCrumbsComponent } from './bread-crumbs/bread-crumbs.component';
 import { ConnectionEditComponent } from './connection-edit/connection-edit.component';
+import { ConnectionDeleteComponent } from './connection-delete/connection-delete.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ConnectionEditComponent } from './connection-edit/connection-edit.compo
     ConnectionListComponent,
     UserNameDisplayComponent,
     BreadCrumbsComponent,
-    ConnectionEditComponent
+    ConnectionEditComponent,
+    ConnectionDeleteComponent
   ],
   imports: [
     BrowserModule,
