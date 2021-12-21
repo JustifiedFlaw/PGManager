@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ConnectionService } from '../connection.service';
-import { DatabaseService } from '../database.service';
 import { BreadCrumb } from '../models/bread-crumb';
 import { Connection } from '../models/connection';
-import { Database } from '../models/database';
 
 @Component({
   selector: 'app-connection-overview',
@@ -15,12 +13,11 @@ export class ConnectionOverviewComponent implements OnInit {
 
   connection?: Connection;
   crumbs: BreadCrumb[] = [
-    {url: null, name: 'Connections'}
+    {url: '/connections', name: 'Connections'}
   ];
   
   constructor(
     private connectionService: ConnectionService,
-    private databaseService: DatabaseService,
     private route: ActivatedRoute
   ) { }
 
