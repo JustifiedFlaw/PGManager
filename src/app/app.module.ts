@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ConnectionListComponent } from './connection-list/connection-list.component';
 import { UserNameDisplayComponent } from './user-name-display/user-name-display.component';
+import { BreadCrumbsComponent } from './bread-crumbs/bread-crumbs.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ConnectionListComponent,
-    UserNameDisplayComponent
+    UserNameDisplayComponent,
+    BreadCrumbsComponent
   ],
   imports: [
     BrowserModule,

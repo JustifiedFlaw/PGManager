@@ -1,0 +1,8 @@
+<div>
+    <app-user-name-display></app-user-name-display>
+    <span *ngFor="let crumb of crumbs">
+        &gt;
+        <span *ngIf="crumb.url"><a routerLink="{{crumb.url}}">{{crumb.name}}</a></span>
+        <span *ngIf="crumb.url == null">{{crumb.name}}</span>
+    </span>
+</div>

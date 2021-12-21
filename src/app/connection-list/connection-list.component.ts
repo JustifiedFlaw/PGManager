@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConnectionService } from '../connection.service';
+import { BreadCrumb } from '../models/bread-crumb';
 import { Connection } from '../models/connection';
 
 @Component({
@@ -9,6 +10,9 @@ import { Connection } from '../models/connection';
 })
 export class ConnectionListComponent implements OnInit {
 
+  crumbs: BreadCrumb[] = [
+    {url: null, name: 'Connections'}
+  ];
   connections: Connection[] = [];
 
   constructor(private connectionService: ConnectionService) { }
