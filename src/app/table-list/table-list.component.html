@@ -1,0 +1,31 @@
+<div class="container">
+    <h3>Tables</h3>
+    <table class="table table-striped">
+        <thead>
+            <th></th>
+            <th></th>
+            <th></th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let table of tables">
+                <td>
+                    <div class="btn-toolbar">
+                        <div class="btn-group me-2">
+                            <a class="btn btn-danger" href="/connections/{{connectionId}}/table/delete">X</a>
+                        </div>
+                        <div class="btn-group me-2">
+                            <a class="btn btn-primary" href="/connections/{{connectionId}}/table/schema/{{table.schemaName}}/{{table.tableName}}" title="View Schema"><i class="bi bi-pencil"></i></a>
+                        </div>
+                    </div>
+                </td>
+                <td>{{table.schemaName}}</td>
+                <td>{{table.tableName}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="p-2 col-12">
+            <a class="btn btn-primary" routerLink="/connections/{{connectionId}}/tables/add">Add</a>
+        </div>
+    </div>
+</div>

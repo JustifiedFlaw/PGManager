@@ -1,0 +1,18 @@
+<div class="container">
+    <h3>Databases</h3>
+    <table class="table table-striped">
+        <thead>
+            <th></th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let database of databases">
+                <td>{{database.name}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="p-2 col-12">
+            <a class="btn btn-primary" routerLink="/connections/{{connectionId}}/databases/add">Add</a>
+        </div>
+    </div>
+</div>

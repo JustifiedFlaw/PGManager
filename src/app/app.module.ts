@@ -12,6 +12,9 @@ import { BreadCrumbsComponent } from './bread-crumbs/bread-crumbs.component';
 import { ConnectionEditComponent } from './connection-edit/connection-edit.component';
 import { ConnectionDeleteComponent } from './connection-delete/connection-delete.component';
 import { ConnectionAddComponent } from './connection-add/connection-add.component';
+import { ConnectionOverviewComponent } from './connection-overview/connection-overview.component';
+import { DatabaseListComponent } from './database-list/database-list.component';
+import { TableListComponent } from './table-list/table-list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { ConnectionAddComponent } from './connection-add/connection-add.componen
     BreadCrumbsComponent,
     ConnectionEditComponent,
     ConnectionDeleteComponent,
-    ConnectionAddComponent
+    ConnectionAddComponent,
+    ConnectionOverviewComponent,
+    DatabaseListComponent,
+    TableListComponent
   ],
   imports: [
     BrowserModule,

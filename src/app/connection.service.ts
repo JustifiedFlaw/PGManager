@@ -9,7 +9,7 @@ import { Connection } from './models/connection';
   providedIn: 'root'
 })
 export class ConnectionService {
-  url = environment.apiUrl + 'connections/';
+  url = environment.apiUrl + '/connections';
 
   constructor(private http: HttpClient, private loginService: LoginService) { }
 
@@ -18,7 +18,7 @@ export class ConnectionService {
   }
 
   get(id: number): Observable<Connection> {
-    return this.http.get<Connection>(this.url + id, this.loginService.getAuthOptions());
+    return this.http.get<Connection>(this.url + '/' + id, this.loginService.getAuthOptions());
   }
 
   update(connection: Connection): Observable<Object> {
@@ -30,6 +30,6 @@ export class ConnectionService {
   }
 
   delete(id: number): Observable<Object> {
-    return this.http.delete(this.url + id, this.loginService.getAuthOptions());
+    return this.http.delete(this.url + '/' + id, this.loginService.getAuthOptions());
   }
 }

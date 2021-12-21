@@ -6,6 +6,7 @@ import { LoginGuard } from './login.guard';
 import { ConnectionEditComponent } from './connection-edit/connection-edit.component';
 import { ConnectionDeleteComponent } from './connection-delete/connection-delete.component';
 import { ConnectionAddComponent } from './connection-add/connection-add.component';
+import { ConnectionOverviewComponent } from './connection-overview/connection-overview.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/connections', pathMatch: 'full' },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'connections', component: ConnectionListComponent, canActivate: [LoginGuard] },
   { path: 'connections/add', component: ConnectionAddComponent, canActivate: [LoginGuard] },
   { path: 'connections/:id', component: ConnectionEditComponent, canActivate: [LoginGuard] },
+  { path: 'connections/:id/view', component: ConnectionOverviewComponent, canActivate: [LoginGuard] },
   { path: 'connections/:id/delete', component: ConnectionDeleteComponent, canActivate: [LoginGuard] }
 ];
 

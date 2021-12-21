@@ -24,10 +24,6 @@ export class ConnectionAddComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    var currentLogin = this.loginService.getCurrentLogin();
-    if (currentLogin) {
-      this.connection.username = currentLogin.username;
-    }
   }
 
   add(): void {
