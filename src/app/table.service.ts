@@ -17,7 +17,7 @@ export class TableService {
     var url = `${environment.apiUrl}/connections/${connectionId}/tables`;
 
     if (table) {
-      url += `${table.schemaName}/${table.tableName}`;
+      url += `/${table.schemaName}/${table.tableName}`;
     }
 
     return url;

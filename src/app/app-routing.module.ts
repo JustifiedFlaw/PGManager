@@ -9,6 +9,7 @@ import { ConnectionAddComponent } from './connection-add/connection-add.componen
 import { ConnectionOverviewComponent } from './connection-overview/connection-overview.component';
 import { DatabaseAddComponent } from './database-add/database-add.component';
 import { TableAddComponent } from './table-add/table-add.component';
+import { TableDeleteComponent } from './table-delete/table-delete.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/connections', pathMatch: 'full' },
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'connections/:id/view', component: ConnectionOverviewComponent, canActivate: [LoginGuard] },
   { path: 'connections/:id/delete', component: ConnectionDeleteComponent, canActivate: [LoginGuard] },
   { path: 'connections/:id/databases/add', component: DatabaseAddComponent, canActivate: [LoginGuard] },
-  { path: 'connections/:id/tables/add', component: TableAddComponent, canActivate: [LoginGuard] }
+  { path: 'connections/:id/tables/add', component: TableAddComponent, canActivate: [LoginGuard] },
+  { path: 'connections/:id/tables/:schema/:table/delete', component: TableDeleteComponent, canActivate: [LoginGuard] }
 ];
 
 @NgModule({
