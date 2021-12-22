@@ -18,6 +18,8 @@ import { TableListComponent } from './table-list/table-list.component';
 import { DatabaseAddComponent } from './database-add/database-add.component';
 import { TableAddComponent } from './table-add/table-add.component';
 import { TableDeleteComponent } from './table-delete/table-delete.component';
+import { TableSchemaComponent } from './table-schema/table-schema.component';
+import { ColumnListComponent } from './column-list/column-list.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { TableDeleteComponent } from './table-delete/table-delete.component';
     TableListComponent,
     DatabaseAddComponent,
     TableAddComponent,
-    TableDeleteComponent
+    TableDeleteComponent,
+    TableSchemaComponent,
+    ColumnListComponent
   ],
   imports: [
     BrowserModule,

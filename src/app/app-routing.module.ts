@@ -10,6 +10,7 @@ import { ConnectionOverviewComponent } from './connection-overview/connection-ov
 import { DatabaseAddComponent } from './database-add/database-add.component';
 import { TableAddComponent } from './table-add/table-add.component';
 import { TableDeleteComponent } from './table-delete/table-delete.component';
+import { TableSchemaComponent } from './table-schema/table-schema.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/connections', pathMatch: 'full' },
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'connections/:id/delete', component: ConnectionDeleteComponent, canActivate: [LoginGuard] },
   { path: 'connections/:id/databases/add', component: DatabaseAddComponent, canActivate: [LoginGuard] },
   { path: 'connections/:id/tables/add', component: TableAddComponent, canActivate: [LoginGuard] },
-  { path: 'connections/:id/tables/:schema/:table/delete', component: TableDeleteComponent, canActivate: [LoginGuard] }
+  { path: 'connections/:id/tables/:schema/:table/delete', component: TableDeleteComponent, canActivate: [LoginGuard] },
+  { path: 'connections/:id/tables/:schema/:table/schema', component: TableSchemaComponent, canActivate: [LoginGuard] }
 ];
 
 @NgModule({

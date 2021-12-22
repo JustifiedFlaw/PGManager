@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoginService } from './login.service';
+import { Column } from './models/column';
 import { Table } from './models/table';
 
 @Injectable({
@@ -37,5 +38,23 @@ export class TableService {
 
   drop(connectionId: number, table: Table): Observable<Object> {
     return this.http.delete(this.url(connectionId, table), this.loginService.getAuthOptions());
+  }
+
+  getColumns(connectionId: number, table: Table): Observable<Column[]> {
+    return this.http.get<Column[]>(this.url(connectionId, table) + '/columns', this.loginService.getAuthOptions());
+  }
+
+  addColumn(connectionId: number, table: Table, column: Column): Observable<Object> {
+    return this.http.post(this.url(connectionId, table) + '/columns', column, this.loginService.getAuthOptions());
+  }
+
+  renameColumn(connectionId: number, table: Table, oldName: string, newName: string): Observable<Object> {
+    let url = `${this.url(connectionId, table)}/columns/${oldName}?newName=${newName}`;
+    return this.http.put(url, null, this.loginService.getAuthOptions());
+  }
+
+  dropColumn(connectionId: number, table: Table, columnName: string): Observable<Object> {
+    let url = `${this.url(connectionId, table)}/columns/${columnName}`;
+    return this.http.delete(url, this.loginService.getAuthOptions());
   }
 }
