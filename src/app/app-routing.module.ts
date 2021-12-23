@@ -13,6 +13,7 @@ import { TableDeleteComponent } from './table-delete/table-delete.component';
 import { TableSchemaComponent } from './table-schema/table-schema.component';
 import { ColumnAddComponent } from './column-add/column-add.component';
 import { ColumnDeleteComponent } from './column-delete/column-delete.component';
+import { ColumnRenameComponent } from './column-rename/column-rename.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/connections', pathMatch: 'full' },
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path: 'connections/:id/tables/:schema/:table/delete', component: TableDeleteComponent, canActivate: [LoginGuard] },
   { path: 'connections/:id/tables/:schema/:table/schema', component: TableSchemaComponent, canActivate: [LoginGuard] },
   { path: 'connections/:id/tables/:schema/:table/columns/add', component: ColumnAddComponent, canActivate: [LoginGuard] },
-  { path: 'connections/:id/tables/:schema/:table/columns/:column/delete', component: ColumnDeleteComponent, canActivate: [LoginGuard] }
+  { path: 'connections/:id/tables/:schema/:table/columns/:column/delete', component: ColumnDeleteComponent, canActivate: [LoginGuard] },
+  { path: 'connections/:id/tables/:schema/:table/columns/:column/rename', component: ColumnRenameComponent, canActivate: [LoginGuard] }
 ];
 
 @NgModule({
