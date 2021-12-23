@@ -16,7 +16,10 @@
         <thead>
             <th class="buttonColumn"></th>
             <th></th>
-            <th></th>
+            <th>Data Type</th>
+            <th>Max Length</th>
+            <th>Primary Key</th>
+            <th>Nullable</th>
         </thead>
         <tbody>
             <tr *ngFor="let column of columns">
@@ -32,6 +35,15 @@
                 </td>
                 <td>{{column.columnName}}</td>
                 <td>{{column.dataType}}</td>
+                <td>{{column.characterMaximumLength}}</td>
+                <td>
+                    <i *ngIf="isPrimaryKey(column)" class="bi-check-square"></i>
+                    <i *ngIf="!isPrimaryKey(column)" class="bi-square"></i>
+                </td>
+                <td>
+                    <i *ngIf="column.isNullable" class="bi-check-square"></i>
+                    <i *ngIf="!column.isNullable" class="bi-square"></i>
+                </td>
             </tr>
         </tbody>
     </table>

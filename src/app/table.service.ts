@@ -57,4 +57,8 @@ export class TableService {
     let url = `${this.url(connectionId, table)}/columns/${columnName}`;
     return this.http.delete(url, this.loginService.getAuthOptions());
   }
+
+  getPrimaryKey(connectionId: number, table: Table): Observable<string[]> {
+    return this.http.get<string[]>(this.url(connectionId, table) + '/primarykey', this.loginService.getAuthOptions());
+  }
 }

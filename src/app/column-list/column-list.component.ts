@@ -14,6 +14,7 @@ export class ColumnListComponent implements OnInit {
   connectionId: number = 0;
   table?: Table;
   columns: Column[] = [];
+  primaryKey: string[] = [];
 
   constructor(
     private tableService: TableService,
@@ -29,6 +30,13 @@ export class ColumnListComponent implements OnInit {
 
     this.tableService.getColumns(this.connectionId, this.table)
       .subscribe(columns => this.columns = columns);
+
+    this.tableService.getPrimaryKey(this.connectionId, this.table)
+      .subscribe(primaryKey => this.primaryKey = primaryKey);
+  }
+
+  isPrimaryKey(column: Column): boolean {
+    return this.primaryKey.indexOf(column.columnName) > -1;
   }
 
 }
