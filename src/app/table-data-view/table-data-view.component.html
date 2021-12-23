@@ -1,0 +1,11 @@
+<app-bread-crumbs [crumbs]="crumbs"></app-bread-crumbs>
+<table class="table table-striped" *ngIf="data">
+    <thead>
+        <th *ngFor="let field of data.fieldTypes | keyvalue">{{field.key}}</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of data.rows">
+            <td *ngFor="let column of row | keyvalue">{{column.value}}</td>
+        </tr>
+    </tbody>
+</table>
