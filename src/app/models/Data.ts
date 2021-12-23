@@ -1,4 +1,4 @@
 export interface Data {
-    fieldTypes: Record<string, string>;
-    rows: Record<string, object>[];
+    fieldTypes: Map<string, string>;
+    rows: any[];
 }

@@ -1,11 +1,20 @@
 <app-bread-crumbs [crumbs]="crumbs"></app-bread-crumbs>
-<table class="table table-striped" *ngIf="data">
+<table class="table table-striped" *ngIf="data && columns && primaryKey">
     <thead>
-        <th *ngFor="let field of data.fieldTypes | keyvalue">{{field.key}}</th>
+        <th *ngIf="primaryKey.length > 0 && table"></th>
+        <th *ngFor="let column of columns">{{column.columnName}}</th>
     </thead>
     <tbody>
         <tr *ngFor="let row of data.rows">
-            <td *ngFor="let column of row | keyvalue">{{column.value}}</td>
+            <td *ngIf="primaryKey.length > 0 && table">
+                <div class="btn-group me-2">
+                    <a class="btn btn-outline-danger" href="/connections/{{connectionId}}/tables/{{table.schemaName}}/{{table.tableName}}/data/{{primaryKeyValue(row)}}/delete" title="Delete Row">X</a>
+                </div>
+                <div class="btn-group me-2">
+                    <a class="btn btn-outline-primary" href="/connections/{{connectionId}}/tables/{{table.schemaName}}/{{table.tableName}}/data/{{primaryKeyValue(row)}}/edit" title="Edit Row"><i class="bi bi-pencil"></i></a>
+                </div>
+            </td>
+            <td *ngFor="let column of columns">{{row[column.columnName]}}</td>
         </tr>
     </tbody>
 </table>

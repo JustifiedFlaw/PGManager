@@ -22,7 +22,6 @@ export class DataService {
   }
 
   getAll(connectionId: number, table: Table): Observable<Data> {
-    // TODO: keep order of fields
     return this.http.get<Data>(this.url(connectionId, table), this.loginService.getAuthOptions());
   }
 }

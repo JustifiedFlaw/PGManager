@@ -3,8 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConnectionService } from '../connection.service';
 import { DataService } from '../data.service';
 import { BreadCrumb } from '../models/bread-crumb';
+import { Column } from '../models/column';
 import { Data } from '../models/Data';
 import { Table } from '../models/table';
+import { TableService } from '../table.service';
 
 @Component({
   selector: 'app-table-data-view',
@@ -16,12 +18,15 @@ export class TableDataViewComponent implements OnInit {
   connectionId: number = 0;
   table?: Table;
   data?: Data;
+  columns?: Column[];
+  primaryKey?: string[];
   crumbs: BreadCrumb[] = [
     { url: '/connections', name: 'Connections' }
   ];
 
   constructor(
     private connectionService: ConnectionService,
+    private tableService: TableService,
     private dataService: DataService,
     private route: ActivatedRoute,
   ) { }
@@ -54,6 +59,23 @@ export class TableDataViewComponent implements OnInit {
       .subscribe(data => {
         this.data = data
       });
+
+    this.tableService.getColumns(this.connectionId, this.table)
+      .subscribe(columns => this.columns = columns);
+    
+    this.tableService.getPrimaryKey(this.connectionId, this.table)
+      .subscribe(primaryKey => this.primaryKey = primaryKey);
+  }
+
+  primaryKeyValue(row: any): string {
+    if (this.primaryKey) {
+      return this.primaryKey.map(k => encodeURIComponent(row[k])).join('-');
+    }
+    else if (row.hasOwnProperty('id')) {
+      return encodeURIComponent(row.get('id')?.toString() ?? '');
+    }
+    else
+      return '';
   }
 
 }
