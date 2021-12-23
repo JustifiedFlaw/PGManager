@@ -5,7 +5,7 @@ export interface Column {
     dataType: string;
     ordinalPosition: number;
     isNullable: boolean;
-    characterMaximumLength: number;
+    characterMaximumLength?: number;
     isIdentity: boolean;
     identityGeneration: string;
 }

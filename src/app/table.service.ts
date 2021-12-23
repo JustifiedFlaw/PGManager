@@ -45,7 +45,7 @@ export class TableService {
   }
 
   addColumn(connectionId: number, table: Table, column: Column): Observable<Object> {
-    return this.http.post(this.url(connectionId, table) + '/columns', column, this.loginService.getAuthOptions());
+    return this.http.post(this.url(connectionId, table) + '/columns', [column], this.loginService.getAuthOptions());
   }
 
   renameColumn(connectionId: number, table: Table, oldName: string, newName: string): Observable<Object> {

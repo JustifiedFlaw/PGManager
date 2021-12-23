@@ -1,0 +1,57 @@
+<app-bread-crumbs [crumbs]="crumbs"></app-bread-crumbs>
+<form class="container" #form="ngForm">
+    <div class="row p-3">
+        <label class="form-label col-form-label col-sm-2" for="name">Name:</label>
+        <div class="col-sm-6">
+            <input id="name" name="name" type="text" class="form-control" [(ngModel)]="column.columnName" autofocus>
+        </div>
+    </div>
+    <div class="row p-3">
+        <label class="form-label col-form-label col-sm-2" for="dataType">Data Type:</label>
+        <div class="col-sm-6">
+            <select id="dataType" name="dataType" class="form-control" [(ngModel)]="column.dataType" (change)="showMaxLength()">
+                <option *ngFor="let dataType of dataTypes" value="{{dataType.name}}">{{dataType.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row p-3" *ngIf="hasMaxLength">
+        <label class="form-label col-form-label col-sm-2" for="maxLength">Max Length:</label>
+        <div class="col-sm-6">
+            <input id="maxLength" name="maxLength" type="number" class="form-control" [(ngModel)]="column.characterMaximumLength">
+            <!--TODO number validation (can be empty)-->
+        </div>
+    </div>
+    <div class="row p-3">
+        <label class="form-label col-form-label col-sm-2" for="isNullable">Is Nullable:</label>
+        <div class="col-sm-6">
+            <input id="isNullable" name="isNullable" type="checkbox" [(ngModel)]="column.isNullable">
+            <!--TODO dont allow nullable for identity columns-->
+        </div>
+    </div>
+    <div class="row p-3">
+        <label class="form-label col-form-label col-sm-2" for="isIdentity">Identity:</label>
+        <div class="col-sm-6">
+            <input id="isIdentity" name="isIdentity" type="checkbox" [(ngModel)]="column.isIdentity">
+        </div>
+    </div>
+    <div class="row p-3" *ngIf="column.isIdentity">
+        <label class="form-label col-form-label col-sm-2" for="identityGeneration">Identity Generation:</label>
+        <div class="col-sm-6">
+            <select id="identityGeneration" name="identityGeneration" class="form-control" [(ngModel)]="column.identityGeneration">
+                <option *ngFor="let identityGenerationType of identityGenerationTypes" value="{{identityGenerationType}}">{{identityGenerationType}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="p-2 col-12">
+            <div class="btn-toolbar">
+                <div class="btn-group me-2" *ngIf="table">
+                    <a class="btn btn-secondary" routerLink="/connections/{{connectionId}}/tables/{{table.schemaName}}/{{table.tableName}}/schema">Cancel</a>
+                </div>
+                <div class="btn-group me-2">
+                    <button class="btn btn-primary" type="submit" (click)="add()">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
