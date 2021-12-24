@@ -18,9 +18,18 @@
         </tr>
     </tbody>
 </table>
-<nav aria-label="Pages">
-    <ul class="pagination">
-      <li *ngIf="startRow > 0" class="page-item"><button class="page-link" (click)="previousPage()">Previous</button></li>
-      <li *ngIf="data && data.rows.length >= rowCount" class="page-item"><button class="page-link" (click)="nextPage()">Next</button></li>
-    </ul>
-  </nav>
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar">
+    <div class="btn-group mr-2" role="group" aria-label="Pages">
+        <button *ngIf="startRow > 0" class="btn btn-outline-primary" (click)="previousPage()">Previous</button>
+        <button *ngIf="data && data.rows.length >= rowCount" class="btn btn-outline-primary" (click)="nextPage()">Next</button>
+    </div>
+    <div *ngIf="startRow > 0 || data && data.rows.length >= rowCount" class="btn-group mr-2" role="group" aria-label="Pages">
+        &nbsp;
+    </div>
+    <div *ngIf="startRow > 0 || data && data.rows.length >= rowCount" class="btn-group mr-2" role="group" aria-label="Pages">
+        &nbsp;
+    </div>
+    <div class="btn-group mr-2" role="group" aria-label="Add Row" *ngIf="table">
+        <a class="btn" class="btn btn-primary" routerLink="/connections/{{connectionId}}/tables/{{table.schemaName}}/{{table.tableName}}/data/add">Add row</a>
+    </div>
+  </div>
