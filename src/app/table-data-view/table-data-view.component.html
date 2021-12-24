@@ -6,7 +6,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let row of data.rows">
-            <td *ngIf="primaryKey.length > 0 && table">
+            <td *ngIf="primaryKey.length > 0 && table" class="buttonColumn-2">
                 <div class="btn-group me-2">
                     <a class="btn btn-outline-danger" href="/connections/{{connectionId}}/tables/{{table.schemaName}}/{{table.tableName}}/data/{{primaryKeyValue(row)}}/delete" title="Delete Row">X</a>
                 </div>

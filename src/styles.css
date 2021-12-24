@@ -36,3 +36,11 @@
 .bd-callout-danger {
     border-left-color:#d9534f
 }
+
+.buttonColumn-2 {
+    width: 112px;
+}
+
+.buttonColumn-3 {
+    width: 170px;
+}
