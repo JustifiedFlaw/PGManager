@@ -21,7 +21,10 @@ export class DataService {
     return url;
   }
 
-  getAll(connectionId: number, table: Table): Observable<Data> {
-    return this.http.get<Data>(this.url(connectionId, table), this.loginService.getAuthOptions());
+  getAll(connectionId: number, table: Table, startRow: number = 0, rowCount: number = 100): Observable<Data> {
+    var url = this.url(connectionId, table);
+    url += `?startRow=${startRow}`;
+    url += `&rowCount=${rowCount}`;
+    return this.http.get<Data>(url, this.loginService.getAuthOptions());
   }
 }

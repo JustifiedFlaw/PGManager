@@ -18,4 +18,9 @@
         </tr>
     </tbody>
 </table>
-<!--TODO: pagination-->
+<nav aria-label="Pages">
+    <ul class="pagination">
+      <li *ngIf="startRow > 0" class="page-item"><button class="page-link" (click)="previousPage()">Previous</button></li>
+      <li *ngIf="data && data.rows.length >= rowCount" class="page-item"><button class="page-link" (click)="nextPage()">Next</button></li>
+    </ul>
+  </nav>

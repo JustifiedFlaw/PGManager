@@ -23,6 +23,8 @@ export class TableDataViewComponent implements OnInit {
   crumbs: BreadCrumb[] = [
     { url: '/connections', name: 'Connections' }
   ];
+  startRow = 0;
+  rowCount = 100;
 
   constructor(
     private connectionService: ConnectionService,
@@ -55,16 +57,32 @@ export class TableDataViewComponent implements OnInit {
         this.crumbs.push({ url: null, name: 'Data'});
       });
 
-    this.dataService.getAll(this.connectionId, this.table)
-      .subscribe(data => {
-        this.data = data
-      });
+    this.getData();
 
     this.tableService.getColumns(this.connectionId, this.table)
       .subscribe(columns => this.columns = columns);
     
     this.tableService.getPrimaryKey(this.connectionId, this.table)
       .subscribe(primaryKey => this.primaryKey = primaryKey);
+  }
+
+  private getData() {
+    if (this.table) { 
+      this.dataService.getAll(this.connectionId, this.table, this.startRow, this.rowCount)
+      .subscribe(data => {
+        this.data = data;
+      });
+    }
+  }
+
+  previousPage() {
+    this.startRow -= Math.max(this.rowCount, 0);
+    this.getData();
+  }
+
+  nextPage() {
+    this.startRow += this.rowCount;
+    this.getData();
   }
 
   primaryKeyValue(row: any): string {
