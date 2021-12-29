@@ -15,6 +15,7 @@ import { ColumnAddComponent } from './column-add/column-add.component';
 import { ColumnDeleteComponent } from './column-delete/column-delete.component';
 import { ColumnRenameComponent } from './column-rename/column-rename.component';
 import { TableDataViewComponent } from './table-data-view/table-data-view.component';
+import { TableDataDeleteComponent } from './table-data-delete/table-data-delete.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/connections', pathMatch: 'full' },
@@ -28,10 +29,11 @@ const routes: Routes = [
   { path: 'connections/:id/tables/add', component: TableAddComponent, canActivate: [LoginGuard] },
   { path: 'connections/:id/tables/:schema/:table/delete', component: TableDeleteComponent, canActivate: [LoginGuard] },
   { path: 'connections/:id/tables/:schema/:table/schema', component: TableSchemaComponent, canActivate: [LoginGuard] },
-  { path: 'connections/:id/tables/:schema/:table/data', component: TableDataViewComponent, canActivate: [LoginGuard] },
   { path: 'connections/:id/tables/:schema/:table/columns/add', component: ColumnAddComponent, canActivate: [LoginGuard] },
   { path: 'connections/:id/tables/:schema/:table/columns/:column/delete', component: ColumnDeleteComponent, canActivate: [LoginGuard] },
-  { path: 'connections/:id/tables/:schema/:table/columns/:column/rename', component: ColumnRenameComponent, canActivate: [LoginGuard] }
+  { path: 'connections/:id/tables/:schema/:table/columns/:column/rename', component: ColumnRenameComponent, canActivate: [LoginGuard] },
+  { path: 'connections/:id/tables/:schema/:table/data', component: TableDataViewComponent, canActivate: [LoginGuard] },
+  { path: 'connections/:id/tables/:schema/:table/data/delete', component: TableDataDeleteComponent, canActivate: [LoginGuard] }
 ];
 
 @NgModule({

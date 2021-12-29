@@ -8,10 +8,10 @@
         <tr *ngFor="let row of data.rows">
             <td *ngIf="primaryKey.length > 0 && table" class="buttonColumn-2">
                 <div class="btn-group me-2">
-                    <a class="btn btn-outline-danger" href="/connections/{{connectionId}}/tables/{{table.schemaName}}/{{table.tableName}}/data/{{primaryKeyValue(row)}}/delete" title="Delete Row">X</a>
+                    <a class="btn btn-outline-danger" href="/connections/{{connectionId}}/tables/{{table.schemaName}}/{{table.tableName}}/data/delete?{{primaryKeyValue(row)}}" title="Delete Row">X</a>
                 </div>
                 <div class="btn-group me-2">
-                    <a class="btn btn-outline-primary" href="/connections/{{connectionId}}/tables/{{table.schemaName}}/{{table.tableName}}/data/{{primaryKeyValue(row)}}/edit" title="Edit Row"><i class="bi bi-pencil"></i></a>
+                    <a class="btn btn-outline-primary" href="/connections/{{connectionId}}/tables/{{table.schemaName}}/{{table.tableName}}/data/edit?{{primaryKeyValue(row)}}" title="Edit Row"><i class="bi bi-pencil"></i></a>
                 </div>
             </td>
             <td *ngFor="let column of columns">{{row[column.columnName]}}</td>
@@ -19,17 +19,11 @@
     </tbody>
 </table>
 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar">
-    <div class="btn-group mr-2" role="group" aria-label="Pages">
+    <div class="btn-group me-2" role="group" aria-label="Pages">
         <button *ngIf="startRow > 0" class="btn btn-outline-primary" (click)="previousPage()">Previous</button>
         <button *ngIf="data && data.rows.length >= rowCount" class="btn btn-outline-primary" (click)="nextPage()">Next</button>
     </div>
-    <div *ngIf="startRow > 0 || data && data.rows.length >= rowCount" class="btn-group mr-2" role="group" aria-label="Pages">
-        &nbsp;
-    </div>
-    <div *ngIf="startRow > 0 || data && data.rows.length >= rowCount" class="btn-group mr-2" role="group" aria-label="Pages">
-        &nbsp;
-    </div>
-    <div class="btn-group mr-2" role="group" aria-label="Add Row" *ngIf="table">
+    <div class="btn-group me-2" role="group" aria-label="Add Row" *ngIf="table">
         <a class="btn" class="btn btn-primary" routerLink="/connections/{{connectionId}}/tables/{{table.schemaName}}/{{table.tableName}}/data/add">Add row</a>
     </div>
 </div>

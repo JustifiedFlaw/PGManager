@@ -27,4 +27,30 @@ export class DataService {
     url += `&rowCount=${rowCount}`;
     return this.http.get<Data>(url, this.loginService.getAuthOptions());
   }
+
+  getWhere(connectionId: number, table: Table, where: Map<string, string>): Observable<Data> {
+    var url = this.url(connectionId, table);
+
+    url += getParams(where);
+
+    return this.http.get<Data>(url, this.loginService.getAuthOptions());
+  }
+
+  delete(connectionId: number, table: Table, where: Map<string, string>): Observable<Object> {
+    var url = this.url(connectionId, table);
+
+    url += getParams(where);
+
+    return this.http.delete<Data>(url, this.loginService.getAuthOptions());
+  }
 }
+function getParams(where: Map<string, string>) {
+  var params = '';
+    where.forEach((v, k) => {
+      params += params === '' ? '?' : '&';
+      params += encodeURIComponent(k) + '=' + encodeURIComponent(v)
+    });
+
+  return params;
+}
+

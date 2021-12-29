@@ -1,36 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Data, ParamMap, Router } from '@angular/router';
 import { ConnectionService } from '../connection.service';
 import { DataService } from '../data.service';
 import { BreadCrumb } from '../models/bread-crumb';
 import { Column } from '../models/column';
-import { Data } from '../models/Data';
 import { Table } from '../models/table';
 import { TableService } from '../table.service';
 
 @Component({
-  selector: 'app-table-data-view',
-  templateUrl: './table-data-view.component.html',
-  styleUrls: ['./table-data-view.component.css']
+  selector: 'app-table-data-delete',
+  templateUrl: './table-data-delete.component.html',
+  styleUrls: ['./table-data-delete.component.css']
 })
-export class TableDataViewComponent implements OnInit {
+export class TableDataDeleteComponent implements OnInit {
 
   connectionId: number = 0;
   table?: Table;
   data?: Data;
   columns?: Column[];
-  primaryKey?: string[];
+  primaryKeyValues = new Map<string, string>();
   crumbs: BreadCrumb[] = [
     { url: '/connections', name: 'Connections' }
   ];
-  startRow = 0;
-  rowCount = 100;
+
 
   constructor(
     private connectionService: ConnectionService,
     private tableService: TableService,
     private dataService: DataService,
     private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -39,6 +38,7 @@ export class TableDataViewComponent implements OnInit {
       schemaName: this.route.snapshot.params.schema,
       tableName: this.route.snapshot.params.table
     };
+    this.primaryKeyValues = this.paramsToPk(this.route.snapshot.queryParamMap);
 
     this.connectionService.get(this.connectionId)
       .subscribe(connection => {
@@ -54,46 +54,38 @@ export class TableDataViewComponent implements OnInit {
           );
         }
 
-        this.crumbs.push({ url: null, name: 'Data'});
+        this.crumbs.push(
+          { url: null, name: 'Data'},
+          { url: null, name: 'Delete'}
+        );
       });
 
-    this.getData();
+    this.dataService.getWhere(this.connectionId, this.table, this.primaryKeyValues)
+      .subscribe(data => this.data = data);
 
     this.tableService.getColumns(this.connectionId, this.table)
       .subscribe(columns => this.columns = columns);
-    
-    this.tableService.getPrimaryKey(this.connectionId, this.table)
-      .subscribe(primaryKey => this.primaryKey = primaryKey);
   }
 
-  private getData() {
-    if (this.table) { 
-      this.dataService.getAll(this.connectionId, this.table, this.startRow, this.rowCount)
-      .subscribe(data => {
-        this.data = data;
-      });
+  paramsToPk(queryParamMap: ParamMap): Map<string, string> {
+    var result = new Map<string, string>();
+  
+    for (let i = 0; i < queryParamMap.keys.length; i++) {
+      const key = queryParamMap.keys[i];
+      const value = queryParamMap.get(key);
+  
+      result.set(key, value ?? '');
     }
+  
+    return result;
   }
 
-  previousPage() {
-    this.startRow -= Math.max(this.rowCount, 0);
-    this.getData();
-  }
-
-  nextPage() {
-    this.startRow += this.rowCount;
-    this.getData();
-  }
-
-  primaryKeyValue(row: any): string {
-    if (this.primaryKey) {
-      return this.primaryKey.map(k => encodeURIComponent(k) + '=' + encodeURIComponent(row[k])).join('&');
+  delete() {
+    if (this.table && this.data) {
+      this.dataService.delete(this.connectionId, this.table, this.primaryKeyValues)
+        .subscribe(() => this.router.navigate([`/connections/${this.connectionId}/tables/${this.table?.schemaName}/${this.table?.tableName}/data`]));
     }
-    else if (row.hasOwnProperty('id')) {
-      return 'id=' + encodeURIComponent(row.get('id')?.toString() ?? '');
-    }
-    else
-      return '';
   }
 
 }
+
