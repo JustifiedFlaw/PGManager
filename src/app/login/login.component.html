@@ -1,31 +1,33 @@
-<div class="container">
-    <div class="row p-3">
-        <label class="form-label col-form-label col-sm-1" for="username">Username:</label>
-        <div class="col-sm-6">
-            <input id="username" type="text" class="form-control" [(ngModel)]="user.username" autofocus />
+<form>
+    <div class="container">
+        <div class="row p-3">
+            <label class="form-label col-form-label col-sm-1" for="username">Username:</label>
+            <div class="col-sm-6">
+                <input id="username" type="text" class="form-control" [(ngModel)]="user.username" autofocus />
+            </div>
         </div>
-    </div>
-    <div class="row p-3">
-        <label class="form-label col-form-label col-sm-1" for="password">Password:</label>
-        <div class="col-sm-6">
-            <input id="password" type="password" class="form-control" [(ngModel)]="user.password" />
+        <div class="row p-3">
+            <label class="form-label col-form-label col-sm-1" for="password">Password:</label>
+            <div class="col-sm-6">
+                <input id="password" type="password" class="form-control" [(ngModel)]="user.password" />
+            </div>
         </div>
-    </div>
-    <div [hidden]="!loginFailed" class="bd-callout bd-callout-danger">
-        <div>
-            Login failed
+        <div [hidden]="!loginFailed" class="bd-callout bd-callout-danger">
+            <div>
+                Login failed
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="p-2 col-12">
-            <div class="btn-toolbar">
-                <div class="btn-group me-2">
-                    <a class="btn btn-secondary" routerLink="/">Cancel</a>
-                </div>
-                <div class="btn-group me-2">
-                    <button class="btn btn-primary" type="submit" (click)="login()">Login</button>
+        <div class="row">
+            <div class="p-2 col-12">
+                <div class="btn-toolbar">
+                    <div class="btn-group me-2">
+                        <a class="btn btn-secondary" routerLink="/">Cancel</a>
+                    </div>
+                    <div class="btn-group me-2">
+                        <button class="btn btn-primary" type="submit" (click)="login()">Login</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</form>

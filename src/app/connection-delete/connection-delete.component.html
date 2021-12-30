@@ -33,7 +33,7 @@
                     <a class="btn btn-secondary" routerLink="/connections">Cancel</a>
                 </div>
                 <div class="btn-group me-2" *ngIf="connection">
-                    <button class="btn btn-danger" (click)="delete(connection.id)">Delete</button>
+                    <button class="btn btn-danger" type="submit" (click)="delete(connection.id)">Delete</button>
                 </div>
             </div>
         </div>

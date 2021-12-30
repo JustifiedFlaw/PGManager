@@ -1,19 +1,21 @@
 <app-bread-crumbs [crumbs]="crumbs"></app-bread-crumbs>
-<div *ngIf="data && columns">
-    <div *ngFor="let row of data.rows">
-        <div class="row p-3" *ngFor="let column of columns">
-            <label class="form-label col-form-label col-sm-3" for="{{column.columnName}}">{{column.columnName}}:</label>
-            <div class="col-sm-6">
-                <input id="{{column.columnName}}" name="{{column.columnName}}" type="text" class="form-control-plaintext" value="{{row[column.columnName]}}" readonly>
+<form>
+    <div *ngIf="data && columns">
+        <div *ngFor="let row of data.rows">
+            <div class="row p-3" *ngFor="let column of columns">
+                <label class="form-label col-form-label col-sm-3" for="{{column.columnName}}">{{column.columnName}}:</label>
+                <div class="col-sm-6">
+                    <input id="{{column.columnName}}" name="{{column.columnName}}" type="text" class="form-control-plaintext" value="{{row[column.columnName]}}" readonly>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="btn-toolbar" role="toolbar" aria-label="Toolbar">
-    <div class="btn-group me-2" role="group" aria-label="Cancel" *ngIf="table">
-        <a class="btn" class="btn btn-secondary" routerLink="/connections/{{connectionId}}/tables/{{table.schemaName}}/{{table.tableName}}/data">Cancel</a>
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar">
+        <div class="btn-group me-2" role="group" aria-label="Cancel" *ngIf="table">
+            <a class="btn" class="btn btn-secondary" routerLink="/connections/{{connectionId}}/tables/{{table.schemaName}}/{{table.tableName}}/data">Cancel</a>
+        </div>
+        <div class="btn-group me-2" role="group" aria-label="Delete">
+            <button class="btn btn-danger" type="submit" (click)="delete()">Delete</button>
+        </div>
     </div>
-    <div class="btn-group me-2" role="group" aria-label="Delete">
-        <button class="btn" class="btn btn-danger" (click)="delete()">Delete</button>
-    </div>
-</div>
+</form>

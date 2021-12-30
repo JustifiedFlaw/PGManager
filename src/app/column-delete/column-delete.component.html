@@ -15,7 +15,7 @@
                     <a class="btn btn-secondary" routerLink="/connections/{{connectionId}}/tables/{{table.schemaName}}/{{table.tableName}}/schema">Cancel</a>
                 </div>
                 <div class="btn-group me-2" *ngIf="table && columnName">
-                    <button class="btn btn-danger" (click)="delete()">Drop</button>
+                    <button type="submit" class="btn btn-danger" (click)="delete()">Drop</button>
                 </div>
             </div>
         </div>

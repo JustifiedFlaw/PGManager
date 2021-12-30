@@ -21,7 +21,7 @@
                     <a class="btn btn-secondary" routerLink="/connections/{{connectionId}}/view">Cancel</a>
                 </div>
                 <div class="btn-group me-2" *ngIf="table">
-                    <button class="btn btn-danger" (click)="drop()">Drop</button>
+                    <button class="btn btn-danger" type="submit" (click)="drop()">Drop</button>
                 </div>
             </div>
         </div>
