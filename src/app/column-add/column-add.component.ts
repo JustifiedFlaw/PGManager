@@ -90,4 +90,10 @@ export class ColumnAddComponent implements OnInit {
     }
   }
 
+  isIdentity_Changed() {
+    if (this.column.isIdentity) {
+      this.column.isNullable = false;
+    }
+  }
+
 }
