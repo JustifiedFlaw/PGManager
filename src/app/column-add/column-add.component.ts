@@ -76,8 +76,6 @@ export class ColumnAddComponent implements OnInit {
     if (this.table) {
       this.tableService.addColumn(this.connectionId, this.table, this.column)
         .subscribe(() => this.router.navigate([`/connections/${this.connectionId}/tables/${this.table?.schemaName}/${this.table?.tableName}/schema`]));
-      
-        //TODO: show errors (could be contains null values)
     }
   }
 

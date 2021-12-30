@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -27,6 +27,8 @@ import { TableDataViewComponent } from './table-data-view/table-data-view.compon
 import { TableDataDeleteComponent } from './table-data-delete/table-data-delete.component';
 import { TableDataEditComponent } from './table-data-edit/table-data-edit.component';
 import { TableDataAddComponent } from './table-data-add/table-data-add.component';
+import { MessageViewComponent } from './message-view/message-view.component';
+import { HttpErrorInterceptor } from './http-error.interceptor';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import { TableDataAddComponent } from './table-data-add/table-data-add.component
     TableDataViewComponent,
     TableDataDeleteComponent,
     TableDataEditComponent,
-    TableDataAddComponent
+    TableDataAddComponent,
+    MessageViewComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,11 @@ import { TableDataAddComponent } from './table-data-add/table-data-add.component
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpErrorInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
