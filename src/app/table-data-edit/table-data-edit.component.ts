@@ -67,6 +67,7 @@ export class TableDataEditComponent implements OnInit {
         if (this.table) {
           this.dataService.getWhere(this.connectionId, this.table, this.primaryKeyValues)
           .subscribe(data => {
+            // TODO: add pk to bread crumbs
             if (data?.rows.length > 0 && this.columns) {
               var editable: {[k: string]: any} = {};
               this.columns.forEach(c => editable[c.columnName] = data.rows[0][c.columnName]);
