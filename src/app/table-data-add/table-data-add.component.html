@@ -1,0 +1,22 @@
+<app-bread-crumbs [crumbs]="crumbs"></app-bread-crumbs>
+<form>
+    <div *ngIf="columns">
+        <span *ngFor="let column of columns">
+            <div class="row p-3" *ngIf="!column.isIdentity">
+                <label class="form-label col-form-label col-sm-3" for="{{column.columnName}}">{{column.columnName}}:</label>
+                <div class="col-sm-6">
+                    <input id="{{column.columnName}}" name="{{column.columnName}}" type="text" class="form-control" [(ngModel)]="row[column.columnName]">
+                </div>
+                <!--TODO: validation for numbers and dates-->
+            </div>
+        </span>
+    </div>
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar">
+        <div class="btn-group me-2" role="group" aria-label="Cancel" *ngIf="table">
+            <a class="btn" class="btn btn-secondary" routerLink="/connections/{{connectionId}}/tables/{{table.schemaName}}/{{table.tableName}}/data">Cancel</a>
+        </div>
+        <div class="btn-group me-2" role="group" aria-label="Insert">
+            <button type="submit" class="btn btn-primary" (click)="add()">Insert</button>
+        </div>
+    </div>
+</form>

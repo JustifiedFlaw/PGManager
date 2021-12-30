@@ -59,6 +59,16 @@ export class DataService {
     return this.http.put<Data>(url, update, this.loginService.getAuthOptions());
   }
 
+  insert(connectionId: number, table: Table, rows: any[]): Observable<Object> {
+    var url = this.url(connectionId, table);
+
+    const insert = {
+      rows: rows,
+    };
+
+    return this.http.post<Data>(url, insert, this.loginService.getAuthOptions());
+  }
+
   paramsToPk(queryParamMap: ParamMap): Map<string, string> {
     var result = new Map<string, string>();
   
