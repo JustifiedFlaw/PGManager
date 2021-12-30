@@ -1,0 +1,17 @@
+<app-bread-crumbs [crumbs]="crumbs"></app-bread-crumbs>
+<div *ngIf="row && columns">
+    <div class="row p-3" *ngFor="let column of columns">
+        <label class="form-label col-form-label col-sm-3" for="{{column.columnName}}">{{column.columnName}}:</label>
+        <div class="col-sm-6">
+            <input id="{{column.columnName}}" name="{{column.columnName}}" type="text" class="form-control" [(ngModel)]="row[column.columnName]">
+        </div>
+    </div>
+</div>
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar">
+    <div class="btn-group me-2" role="group" aria-label="Cancel" *ngIf="table">
+        <a class="btn" class="btn btn-secondary" routerLink="/connections/{{connectionId}}/tables/{{table.schemaName}}/{{table.tableName}}/data">Cancel</a>
+    </div>
+    <div class="btn-group me-2" role="group" aria-label="Save">
+        <button class="btn" class="btn btn-primary" (click)="save()">Save</button>
+    </div>
+</div>

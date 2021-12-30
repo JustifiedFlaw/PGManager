@@ -25,6 +25,7 @@ import { ColumnDeleteComponent } from './column-delete/column-delete.component';
 import { ColumnRenameComponent } from './column-rename/column-rename.component';
 import { TableDataViewComponent } from './table-data-view/table-data-view.component';
 import { TableDataDeleteComponent } from './table-data-delete/table-data-delete.component';
+import { TableDataEditComponent } from './table-data-edit/table-data-edit.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { TableDataDeleteComponent } from './table-data-delete/table-data-delete.
     ColumnDeleteComponent,
     ColumnRenameComponent,
     TableDataViewComponent,
-    TableDataDeleteComponent
+    TableDataDeleteComponent,
+    TableDataEditComponent
   ],
   imports: [
     BrowserModule,

@@ -8,15 +8,15 @@ import { Table } from '../models/table';
 import { TableService } from '../table.service';
 
 @Component({
-  selector: 'app-table-data-delete',
-  templateUrl: './table-data-delete.component.html',
-  styleUrls: ['./table-data-delete.component.css']
+  selector: 'app-table-data-edit',
+  templateUrl: './table-data-edit.component.html',
+  styleUrls: ['./table-data-edit.component.css']
 })
-export class TableDataDeleteComponent implements OnInit {
+export class TableDataEditComponent implements OnInit {
 
   connectionId: number = 0;
   table?: Table;
-  data?: Data;
+  row?: any;
   columns?: Column[];
   primaryKeyValues = new Map<string, string>();
   crumbs: BreadCrumb[] = [
@@ -56,20 +56,31 @@ export class TableDataDeleteComponent implements OnInit {
 
         this.crumbs.push(
           { url: null, name: 'Data'},
-          { url: null, name: 'Delete'}
+          { url: null, name: 'Edit'}
         );
       });
 
-    this.dataService.getWhere(this.connectionId, this.table, this.primaryKeyValues)
-      .subscribe(data => this.data = data);
-
     this.tableService.getColumns(this.connectionId, this.table)
-      .subscribe(columns => this.columns = columns);
+      .subscribe(columns => {
+        this.columns = columns.filter(c => !this.primaryKeyValues.has(c.columnName) && !c.isIdentity);
+
+        if (this.table) {
+          this.dataService.getWhere(this.connectionId, this.table, this.primaryKeyValues)
+          .subscribe(data => {
+            if (data?.rows.length > 0 && this.columns) {
+              var editable: {[k: string]: any} = {};
+              this.columns.forEach(c => editable[c.columnName] = data.rows[0][c.columnName]);
+              
+              this.row = editable;
+            }
+          });
+        }
+      });
   }
 
-  delete() {
-    if (this.table && this.data) {
-      this.dataService.delete(this.connectionId, this.table, this.primaryKeyValues)
+  save() {
+    if (this.table && this.row) {  
+      this.dataService.update(this.connectionId, this.table, this.primaryKeyValues, this.row)
         .subscribe(() => this.router.navigate([`/connections/${this.connectionId}/tables/${this.table?.schemaName}/${this.table?.tableName}/data`]));
     }
   }

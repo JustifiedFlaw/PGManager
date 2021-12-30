@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoginService } from './login.service';
@@ -43,7 +44,35 @@ export class DataService {
 
     return this.http.delete<Data>(url, this.loginService.getAuthOptions());
   }
+
+  update(connectionId: number, table: Table, where: Map<string, string>, row: any): Observable<Object> {
+    var url = this.url(connectionId, table);
+
+    var whereDictionary: {[k: string]: any} = {};
+    where.forEach((v, k) => whereDictionary[k] = v);
+
+    const update = {
+      row: row,
+      where: whereDictionary
+    };
+
+    return this.http.put<Data>(url, update, this.loginService.getAuthOptions());
+  }
+
+  paramsToPk(queryParamMap: ParamMap): Map<string, string> {
+    var result = new Map<string, string>();
+  
+    for (let i = 0; i < queryParamMap.keys.length; i++) {
+      const key = queryParamMap.keys[i];
+      const value = queryParamMap.get(key);
+  
+      result.set(key, value ?? '');
+    }
+  
+    return result;
+  }
 }
+
 function getParams(where: Map<string, string>) {
   var params = '';
     where.forEach((v, k) => {
