@@ -1,5 +1,13 @@
 <app-bread-crumbs [crumbs]="crumbs"></app-bread-crumbs>
 <form>
+    <div>
+        <div class="row p-3" *ngFor="let column of primaryKeyValues | keyvalue">
+            <label class="form-label col-form-label col-sm-3" for="{{column.key}}">{{column.key}}:</label>
+            <div class="col-sm-6">
+                <input id="{{column.key}}" name="{{column.key}}" type="text" class="form-control-plaintext" value="{{primaryKeyValues.get(column.key)}}">
+            </div>
+        </div>
+    </div>
     <div *ngIf="row && columns">
         <div class="row p-3" *ngFor="let column of columns">
             <label class="form-label col-form-label col-sm-3" for="{{column.columnName}}">{{column.columnName}}:</label>

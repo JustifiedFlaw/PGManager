@@ -56,8 +56,7 @@ export class TableDataEditComponent implements OnInit {
 
         this.crumbs.push(
           { url: null, name: 'Data'},
-          { url: null, name: 'Edit'},
-          { url: null, name: Array.from(this.primaryKeyValues).map(([k,v]) => `${k}: ${v}`).join(' & ')}
+          { url: null, name: 'Edit'}
         );
       });
 

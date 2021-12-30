@@ -56,8 +56,7 @@ export class TableDataDeleteComponent implements OnInit {
 
         this.crumbs.push(
           { url: null, name: 'Data'},
-          { url: null, name: 'Delete'},
-          { url: null, name: Array.from(this.primaryKeyValues).map(([k,v]) => `${k}: ${v}`).join(' & ')}
+          { url: null, name: 'Delete'}
         );
       });
 
