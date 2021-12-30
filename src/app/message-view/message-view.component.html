@@ -1,4 +1,4 @@
 <div *ngIf="messageService.messages.length">
     <div *ngFor='let message of messageService.messages' class="bd-callout bd-callout-danger"> {{message}} </div>
-    <button class="btn btn-primary" (click)="messageService.clear()">Clear messages</button>
+    <button class="btn btn-outline-primary" (click)="messageService.clear()">Clear messages</button>
 </div>
