@@ -28,8 +28,15 @@
     <div class="row p-3" *ngIf="hasMaxLength">
         <label class="form-label col-form-label col-sm-2" for="maxLength">Max Length:</label>
         <div class="col-sm-6">
-            <input id="maxLength" name="maxLength" type="number" class="form-control" [(ngModel)]="column.characterMaximumLength">
-            <!--TODO number validation (can be empty)-->
+            <input id="maxLength" name="maxLength" #maxLength="ngModel"
+                type="text" class="form-control" 
+                [(ngModel)]="column.characterMaximumLength"
+                pattern="^\d*$">
+            <div id='maxLengthValidation' [hidden]="maxLength.valid || maxLength.pristine" class="bd-callout bd-callout-danger">
+                <div *ngIf="maxLength.errors?.pattern">
+                    Max length must be a whole number
+                </div>
+            </div>
         </div>
     </div>
     <div class="row p-3" *ngIf="!column.isIdentity">
