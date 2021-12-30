@@ -4,14 +4,16 @@
         <label class="form-label col-form-label col-sm-1" for="schema">Name:</label>
         <div class="col-sm-6">
             <input id="schema" name="schema" type="text" class="form-control" [(ngModel)]="table.schemaName">
-            <!--TODO: validate a name is entered-->
+            <!--TODO: schema required-->
+            <!--TODO: schema is alphanumeric-->
         </div>
     </div>
     <div class="row p-3">
         <label class="form-label col-form-label col-sm-1" for="name">Name:</label>
         <div class="col-sm-6">
             <input id="name" name="name" type="text" class="form-control" [(ngModel)]="table.tableName" autofocus>
-            <!--TODO: validate a name is entered-->
+            <!--TODO: name required-->
+            <!--TODO: name is alphanumeric-->
         </div>
     </div>
     <div class="row">

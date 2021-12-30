@@ -4,12 +4,14 @@
         <label class="form-label col-form-label col-sm-1" for="name">Name:</label>
         <div class="col-sm-6">
             <input id="name" name="name" type="text" class="form-control" [(ngModel)]="connection.connectionName" autofocus>
+            <!--TODO: name required-->
         </div>
     </div>
     <div class="row p-3">
         <label class="form-label col-form-label col-sm-1" for="host">Host:</label>
         <div class="col-sm-6">
             <input id="host" name="host" type="text" class="form-control" [(ngModel)]="connection.connectionHost">
+            <!--TODO: host required-->
         </div>
     </div>
     <div class="row p-3">
@@ -43,6 +45,7 @@
                 <div class="btn-group me-2">
                     <a class="btn btn-secondary" routerLink="/connections">Cancel</a>
                 </div>
+                <!--TODO: test connection button-->
                 <div class="btn-group me-2">
                     <button class="btn btn-primary" type="submit" (click)="add()">Add</button>
                 </div>
