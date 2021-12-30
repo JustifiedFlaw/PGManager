@@ -10,10 +10,10 @@
     </div>
 </div>
 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar">
-    <div class="btn-group me-2" role="group" aria-label="Delete" *ngIf="table">
+    <div class="btn-group me-2" role="group" aria-label="Cancel" *ngIf="table">
         <a class="btn" class="btn btn-secondary" routerLink="/connections/{{connectionId}}/tables/{{table.schemaName}}/{{table.tableName}}/data">Cancel</a>
     </div>
-    <div class="btn-group me-2" role="group" aria-label="Delete" *ngIf="table">
+    <div class="btn-group me-2" role="group" aria-label="Delete">
         <button class="btn" class="btn btn-danger" (click)="delete()">Delete</button>
     </div>
 </div>
