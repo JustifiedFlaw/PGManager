@@ -3,8 +3,18 @@
     <div class="row p-3">
         <label class="form-label col-form-label col-sm-2" for="name">Name:</label>
         <div class="col-sm-6">
-            <input id="name" name="name" type="text" class="form-control" [(ngModel)]="column.columnName" autofocus>
-            <!--TODO: name required-->
+            <input id="name" name="name" #name="ngModel" 
+                type="text" class="form-control" 
+                [(ngModel)]="column.columnName" autofocus
+                required pattern="^[a-zA-Z_]+[a-zA-Z0-9_]*$">
+            <div id='nameValidation' [hidden]="name.valid || name.pristine" class="bd-callout bd-callout-danger">
+                <div *ngIf="name.errors?.required">
+                    Name is required
+                </div>
+                <div *ngIf="name.errors?.pattern">
+                    Name must be letters, numbers or underscores. Must begin with a letter or underscore.
+                </div>
+            </div>
         </div>
     </div>
     <div class="row p-3">
@@ -49,7 +59,7 @@
                     <a class="btn btn-secondary" routerLink="/connections/{{connectionId}}/tables/{{table.schemaName}}/{{table.tableName}}/schema">Cancel</a>
                 </div>
                 <div class="btn-group me-2">
-                    <button class="btn btn-primary" type="submit" (click)="add()">Add</button>
+                    <button class="btn btn-primary" type="submit" (click)="add()" [disabled]="!form.valid || form.pristine">Add</button>
                 </div>
             </div>
         </div>
