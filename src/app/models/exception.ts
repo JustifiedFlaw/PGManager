@@ -11,7 +11,11 @@ export class Exception {
             this.stackTrace = '';
         } else {
             // server-side error
-            var complete = error.error as string;
+            var e: any = error.error
+            if (error.error.hasOwnProperty("errors")) {
+                e = Object.keys(error.error.errors).map(k => `${k}: ${error.error.errors[k]}`).join('\n');
+            }
+            var complete = e as string;
             var split = splitAt(complete, '\n   at ');
             this.message = split[0];
             this.stackTrace = split.length > 1 ? split[1] : '';
