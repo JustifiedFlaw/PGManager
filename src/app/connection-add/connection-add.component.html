@@ -3,23 +3,39 @@
     <div class="row p-3">
         <label class="form-label col-form-label col-sm-1" for="name">Name:</label>
         <div class="col-sm-6">
-            <input id="name" name="name" type="text" class="form-control" [(ngModel)]="connection.connectionName" autofocus>
-            <!--TODO: name required-->
+            <input id="name" name="name" #name="ngModel" 
+                type="text" class="form-control" 
+                [(ngModel)]="connection.connectionName" 
+                autofocus required>
+            <div id='nameValidation' [hidden]="name.valid || name.pristine" class="bd-callout bd-callout-danger">
+                <div *ngIf="name.errors?.required">
+                    Name is required
+                </div>
+            </div>
         </div>
     </div>
     <div class="row p-3">
         <label class="form-label col-form-label col-sm-1" for="host">Host:</label>
         <div class="col-sm-6">
             <input id="host" name="host" type="text" class="form-control" [(ngModel)]="connection.connectionHost">
-            <!--TODO: host required-->
         </div>
     </div>
     <div class="row p-3">
         <label class="form-label col-form-label col-sm-1" for="port">Port:</label>
         <div class="col-sm-6">
-            <input id="port" name="port" type="number" class="form-control" [(ngModel)]="connection.connectionPort">
+            <input id="port" name="port" #port="ngModel"
+                type="text" class="form-control"
+                [(ngModel)]="connection.connectionPort"
+                required pattern="^\d*$">
+            <div id='portValidation' [hidden]="port.valid || port.pristine" class="bd-callout bd-callout-danger">
+                <div *ngIf="port.errors?.required">
+                    Port is required
+                </div>
+                <div *ngIf="port.errors?.pattern">
+                    Port must be a whole number
+                </div>
+            </div>
         </div>
-        <!--Validator for port being a number-->
     </div>
     <div class="row p-3">
         <label class="form-label col-form-label col-sm-1" for="database">Database:</label>
@@ -47,7 +63,8 @@
                 </div>
                 <!--TODO: test connection button-->
                 <div class="btn-group me-2">
-                    <button class="btn btn-primary" type="submit" (click)="add()">Add</button>
+                    <button class="btn btn-primary" type="submit" 
+                        (click)="add()" [disabled]="!form.valid || form.pristine">Add</button>
                 </div>
             </div>
         </div>
