@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConnectionService } from '../connection.service';
+import { MessageService } from '../message.service';
 import { BreadCrumb } from '../models/bread-crumb';
 import { Connection } from '../models/connection';
 
@@ -18,6 +19,7 @@ export class ConnectionEditComponent implements OnInit {
 
   constructor(
     private connectionService: ConnectionService,
+    private messageService: MessageService,
     private route: ActivatedRoute,
     private router: Router) { }
 
@@ -35,6 +37,19 @@ export class ConnectionEditComponent implements OnInit {
     if (this.connection) {
       this.connectionService.update(this.connection)
         .subscribe(() => this.router.navigate(["/connections"]));
+    }
+  }
+
+  test(): void {
+    if (this.connection) { 
+      this.connectionService.test(this.connection)
+      .subscribe(success => {
+        if (success) {
+          this.messageService.success('Connection tested successfuly!');
+        }
+      });
+    } else {
+      this.messageService.error('There is no connection loaded');
     }
   }
 
