@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConnectionService } from '../connection.service';
-import { LoginService } from '../login.service';
+import { MessageService } from '../message.service';
 import { BreadCrumb } from '../models/bread-crumb';
 import { Connection } from '../models/connection';
 
@@ -20,7 +20,7 @@ export class ConnectionAddComponent implements OnInit {
 
   constructor(
     private connectionService: ConnectionService,
-    private loginService: LoginService,
+    private messageService: MessageService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -29,6 +29,16 @@ export class ConnectionAddComponent implements OnInit {
   add(): void {
     this.connectionService.add(this.connection)
       .subscribe(() => this.router.navigate(["/connections"]));
+  }
+
+  test(): void {
+    this.connectionService.test(this.connection)
+      .subscribe(success => {
+        if (success) {
+          // TODO: message with green not red
+          this.messageService.add('Connection tested successfuly!');
+        }
+      });
   }
 
 }

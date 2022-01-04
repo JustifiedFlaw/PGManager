@@ -63,6 +63,7 @@
                 <div class="btn-group me-2">
                     <a class="btn btn-secondary" routerLink="/connections">Cancel</a>
                 </div>
+                <!--TODO: test connection button-->
                 <div class="btn-group me-2" *ngIf="connection">
                     <button class="btn btn-primary" type="submit" (click)="save()"
                         [disabled]="!form.valid || form.pristine">Save</button>

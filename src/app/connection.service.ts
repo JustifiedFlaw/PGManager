@@ -32,4 +32,8 @@ export class ConnectionService {
   delete(id: number): Observable<Object> {
     return this.http.delete(this.url + '/' + id, this.loginService.getAuthOptions());
   }
+
+  test(connection : Connection): Observable<boolean> {
+    return this.http.post<boolean>(this.url + '/test', connection, this.loginService.getAuthOptions());
+  }
 }
