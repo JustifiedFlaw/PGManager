@@ -36,7 +36,7 @@ export class ConnectionAddComponent implements OnInit {
       .subscribe(success => {
         if (success) {
           // TODO: message with green not red
-          this.messageService.add('Connection tested successfuly!');
+          this.messageService.success('Connection tested successfuly!');
         }
       });
   }

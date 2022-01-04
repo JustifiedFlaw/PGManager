@@ -27,7 +27,7 @@ intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<an
 
                 const exception = new Exception(error);
 
-                this.messageService.add(exception.message);
+                this.messageService.error(exception.message);
 
                 return throwError(exception.message);
             })

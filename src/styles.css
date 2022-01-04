@@ -25,6 +25,10 @@
     margin-top:-.25rem
 }
 
+.bd-callout-success {
+    border-left-color:#1e7e34
+}
+
 .bd-callout-info {
     border-left-color:#5bc0de
 }
