@@ -79,7 +79,6 @@ export class TableDataAddComponent implements OnInit {
   }
 
   add() {
-    // TODO: date field seems to cause error
     if (this.table && this.row) {  
       this.dataService.insert(this.connectionId, this.table, [this.row])
         .subscribe(() => this.router.navigate([`/connections/${this.connectionId}/tables/${this.table?.schemaName}/${this.table?.tableName}/data`]));
