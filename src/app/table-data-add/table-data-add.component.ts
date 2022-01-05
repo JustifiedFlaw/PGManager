@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Data, ParamMap, Router } from '@angular/router';
 import { ConnectionService } from '../connection.service';
+import { DataFormGroupService } from '../data-form-group.service';
 import { DataService } from '../data.service';
 import { BreadCrumb } from '../models/bread-crumb';
 import { Column } from '../models/column';
@@ -30,6 +31,7 @@ export class TableDataAddComponent implements OnInit {
     private connectionService: ConnectionService,
     private tableService: TableService,
     private dataService: DataService,
+    private dataFormGroupService: DataFormGroupService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -65,17 +67,8 @@ export class TableDataAddComponent implements OnInit {
     this.tableService.getColumns(this.connectionId, this.table)
       .subscribe(columns => {
         this.columns = columns;
-        this.form = this.toFormGroup(this.columns);
+        this.form = this.dataFormGroupService.toFormGroup(this.columns);
       });
-  }
-
-  toFormGroup(columns: Column[] ) {
-    const group: any = {};
-
-    columns.forEach(column => {
-      group[column.columnName] = new FormControl('', Validators.pattern(this.validationPattern(column)));
-    });
-    return new FormGroup(group);
   }
 
   add() {
@@ -83,30 +76,6 @@ export class TableDataAddComponent implements OnInit {
       this.dataService.insert(this.connectionId, this.table, [this.row])
         .subscribe(() => this.router.navigate([`/connections/${this.connectionId}/tables/${this.table?.schemaName}/${this.table?.tableName}/data`]));
     }
-  }
-
-  validationPattern(column: Column): string {
-    switch (column.dataType) {
-      case 'bigint':
-      case 'integer':
-      case 'smallint':  
-        return "\\d*"
-
-      case 'numeric':
-      case 'double precision':
-      case 'real':      
-        return "\\d*(.\\d+)?"
-
-      case 'date':
-      case 'time without time zone':
-      case 'time with time zone':
-      case 'timestamp without time zone':
-      case 'timestamp with time zone':
-        return "\\d{4}-[01]\\d-[0-3]\\d([T ][0-2]\\d:[0-5]\\d(:[0-5]\\d(?:\\.\\d+)?)?)?Z?";
-      
-      default:
-        return ".*"
-    };
   }
 
 }
