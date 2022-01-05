@@ -1,13 +1,19 @@
 <app-bread-crumbs [crumbs]="crumbs"></app-bread-crumbs>
-<form>
+<form [formGroup]="form">
     <div *ngIf="columns">
         <span *ngFor="let column of columns">
             <div class="row p-3" *ngIf="!column.isIdentity">
                 <label class="form-label col-form-label col-sm-3" for="{{column.columnName}}">{{column.columnName}}:</label>
                 <div class="col-sm-6">
-                    <input id="{{column.columnName}}" name="{{column.columnName}}" type="text" class="form-control" [(ngModel)]="row[column.columnName]">
+                    <input [id]="column.columnName" name="{{column.columnName}}"
+                        [formControlName]="column.columnName"
+                        type="text" class="form-control" [(ngModel)]="row[column.columnName]">
                 </div>
-                <!--TODO: validation for numbers and dates-->
+                <div id='{{column.columnName}}Validation' [hidden]="this.form.controls[column.columnName].valid || this.form.controls[column.columnName].pristine" class="bd-callout bd-callout-danger">
+                    <div *ngIf="this.form.controls[column.columnName].errors?.pattern">
+                        {{column.columnName}} value is not a valid {{column.dataType}}
+                    </div>
+                </div>
             </div>
         </span>
     </div>
