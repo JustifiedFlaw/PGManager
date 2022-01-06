@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Data, ParamMap, Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConnectionService } from '../connection.service';
+import { DataFormGroupService } from '../data-form-group.service';
 import { DataService } from '../data.service';
 import { BreadCrumb } from '../models/bread-crumb';
 import { Column } from '../models/column';
@@ -14,6 +16,7 @@ import { TableService } from '../table.service';
 })
 export class TableDataEditComponent implements OnInit {
 
+  form!: FormGroup;
   connectionId: number = 0;
   table?: Table;
   row?: any;
@@ -28,6 +31,7 @@ export class TableDataEditComponent implements OnInit {
     private connectionService: ConnectionService,
     private tableService: TableService,
     private dataService: DataService,
+    private dataFormGroupService: DataFormGroupService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -55,7 +59,7 @@ export class TableDataEditComponent implements OnInit {
         }
 
         this.crumbs.push(
-          { url: null, name: 'Data'},
+          { url: null, name: 'Data'}, //TODO: click on Data to return to data view page
           { url: null, name: 'Edit'}
         );
       });
@@ -63,6 +67,7 @@ export class TableDataEditComponent implements OnInit {
     this.tableService.getColumns(this.connectionId, this.table)
       .subscribe(columns => {
         this.columns = columns.filter(c => !this.primaryKeyValues.has(c.columnName) && !c.isIdentity);
+        this.form = this.dataFormGroupService.toFormGroup(this.columns);
 
         if (this.table) {
           this.dataService.getWhere(this.connectionId, this.table, this.primaryKeyValues)

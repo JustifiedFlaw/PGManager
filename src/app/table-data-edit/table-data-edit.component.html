@@ -1,5 +1,5 @@
 <app-bread-crumbs [crumbs]="crumbs"></app-bread-crumbs>
-<form>
+<form [formGroup]="form">
     <div>
         <div class="row p-3" *ngFor="let column of primaryKeyValues | keyvalue">
             <label class="form-label col-form-label col-sm-3" for="{{column.key}}">{{column.key}}:</label>
@@ -9,20 +9,29 @@
         </div>
     </div>
     <div *ngIf="row && columns">
-        <div class="row p-3" *ngFor="let column of columns">
-            <label class="form-label col-form-label col-sm-3" for="{{column.columnName}}">{{column.columnName}}:</label>
-            <div class="col-sm-6">
-                <input id="{{column.columnName}}" name="{{column.columnName}}" type="text" class="form-control" [(ngModel)]="row[column.columnName]">
+        <span *ngFor="let column of columns">
+            <div class="row p-3" *ngIf="!column.isIdentity">
+                <label class="form-label col-form-label col-sm-3" for="{{column.columnName}}">{{column.columnName}}:</label>
+                <div class="col-sm-6">
+                    <input [id]="column.columnName" name="{{column.columnName}}"
+                        [formControlName]="column.columnName"
+                        type="text" class="form-control" [(ngModel)]="row[column.columnName]">
+                </div>
+                <div id='{{column.columnName}}Validation' [hidden]="this.form.controls[column.columnName].valid || this.form.controls[column.columnName].pristine" class="bd-callout bd-callout-danger">
+                    <div *ngIf="this.form.controls[column.columnName].errors?.pattern">
+                        {{column.columnName}} value is not a valid {{column.dataType}}
+                    </div>
+                </div>
             </div>
-            <!--TODO: validation for numbers and dates-->
-        </div>
+        </span>
     </div>
     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar">
         <div class="btn-group me-2" role="group" aria-label="Cancel" *ngIf="table">
             <a class="btn" class="btn btn-secondary" routerLink="/connections/{{connectionId}}/tables/{{table.schemaName}}/{{table.tableName}}/data">Cancel</a>
         </div>
         <div class="btn-group me-2" role="group" aria-label="Save">
-            <button type="submit" class="btn btn-primary" (click)="save()">Save</button>
+            <button type="submit" class="btn btn-primary" (click)="save()"
+                [disabled]="!form.valid">Save</button>
         </div>
     </div>
 </form>
