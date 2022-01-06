@@ -6,3 +6,6 @@ A web front end build in Angular to manage Postgresql databases
 * The API address can be changed in 
     * environments/environment.ts
     * environments/environment.prod.ts
+
+## Work in progress
+* User management to be added
