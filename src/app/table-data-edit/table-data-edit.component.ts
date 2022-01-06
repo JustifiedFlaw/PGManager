@@ -54,14 +54,11 @@ export class TableDataEditComponent implements OnInit {
         if (this.table) {
           this.crumbs.push(
             { url: null, name: this.table.schemaName},
-            { url: null, name: this.table.tableName}
+            { url: null, name: this.table.tableName},
+            { url: `/connections/${this.connectionId}/tables/${this.table.schemaName}/${this.table.tableName}/data`, name: 'Data'},
+            { url: null, name: 'Edit'}
           );
         }
-
-        this.crumbs.push(
-          { url: null, name: 'Data'}, //TODO: click on Data to return to data view page
-          { url: null, name: 'Edit'}
-        );
       });
 
     this.tableService.getColumns(this.connectionId, this.table)
