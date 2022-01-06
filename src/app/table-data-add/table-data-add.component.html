@@ -22,7 +22,8 @@
             <a class="btn" class="btn btn-secondary" routerLink="/connections/{{connectionId}}/tables/{{table.schemaName}}/{{table.tableName}}/data">Cancel</a>
         </div>
         <div class="btn-group me-2" role="group" aria-label="Insert">
-            <button type="submit" class="btn btn-primary" (click)="add()">Insert</button>
+            <button type="submit" class="btn btn-primary" (click)="add()"
+                [disabled]="!form.valid || form.pristine">Insert</button>
         </div>
     </div>
 </form>
