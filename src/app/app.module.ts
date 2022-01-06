@@ -31,6 +31,7 @@ import { MessageViewComponent } from './message-view/message-view.component';
 import { HttpErrorInterceptor } from './http-error.interceptor';
 import { TableRenameComponent } from './table-rename/table-rename.component';
 import { SchemaListComponent } from './schema-list/schema-list.component';
+import { SchemaDeleteComponent } from './schema-delete/schema-delete.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { SchemaListComponent } from './schema-list/schema-list.component';
     TableDataAddComponent,
     MessageViewComponent,
     TableRenameComponent,
-    SchemaListComponent
+    SchemaListComponent,
+    SchemaDeleteComponent
   ],
   imports: [
     BrowserModule,

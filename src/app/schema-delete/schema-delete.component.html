@@ -1,0 +1,23 @@
+<app-bread-crumbs [crumbs]="crumbs"></app-bread-crumbs>
+<form class="container" #form="ngForm">
+    <div *ngIf="schema">
+        <div class="row p-3">
+            <label class="form-label col-form-label col-sm-1" for="name">Name:</label>
+            <div class="col-sm-6">
+                <input id="name" name="name" type="text" class="form-control-plaintext" value="{{schema}}" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="p-2 col-12">
+            <div class="btn-toolbar">
+                <div class="btn-group me-2">
+                    <a class="btn btn-secondary" routerLink="/connections/{{connectionId}}/view">Cancel</a>
+                </div>
+                <div class="btn-group me-2" *ngIf="schema">
+                    <button class="btn btn-danger" type="submit" (click)="drop()">Drop</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

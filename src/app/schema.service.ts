@@ -16,7 +16,7 @@ export class SchemaService {
   url(connectionId: number, schema?: string): string {
     let url = `${environment.apiUrl}/connections/${connectionId}/schemas`;
     if (schema) {
-      url +=  + `/${schema}`;
+      url += `/${schema}`;
     }
 
     return url;
