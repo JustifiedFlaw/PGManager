@@ -11,10 +11,9 @@ export class Exception {
             this.stackTrace = '';
         } else {
             // server-side error
-            // TODO: handle if error.error is null
-            var e: any = error.error
-            if (error.error.hasOwnProperty("errors")) {
-                e = Object.keys(error.error.errors).map(k => `${k}: ${error.error.errors[k]}`).join('\n');
+            var e: any = ((error.error ?? error.message) ?? error.statusText) ?? 'Unknown error';
+            if (e.hasOwnProperty("errors")) {
+                e = Object.keys(e.errors).map(k => `${k}: ${error.error.errors[k]}`).join('\n');
             }
             var complete = e as string;
             var split = splitAt(complete, '\n   at ');
