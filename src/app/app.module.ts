@@ -33,6 +33,7 @@ import { TableRenameComponent } from './table-rename/table-rename.component';
 import { SchemaListComponent } from './schema-list/schema-list.component';
 import { SchemaDeleteComponent } from './schema-delete/schema-delete.component';
 import { SchemaAddComponent } from './schema-add/schema-add.component';
+import { SchemaRenameComponent } from './schema-rename/schema-rename.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { SchemaAddComponent } from './schema-add/schema-add.component';
     TableRenameComponent,
     SchemaListComponent,
     SchemaDeleteComponent,
-    SchemaAddComponent
+    SchemaAddComponent,
+    SchemaRenameComponent
   ],
   imports: [
     BrowserModule,

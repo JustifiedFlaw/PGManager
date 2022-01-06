@@ -21,6 +21,7 @@ import { TableDataAddComponent } from './table-data-add/table-data-add.component
 import { TableRenameComponent } from './table-rename/table-rename.component';
 import { SchemaDeleteComponent } from './schema-delete/schema-delete.component';
 import { SchemaAddComponent } from './schema-add/schema-add.component';
+import { SchemaRenameComponent } from './schema-rename/schema-rename.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/connections', pathMatch: 'full' },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'connections/:id/delete', component: ConnectionDeleteComponent, canActivate: [LoginGuard] },
   { path: 'connections/:id/databases/add', component: DatabaseAddComponent, canActivate: [LoginGuard] },
   { path: 'connections/:id/schemas/add', component: SchemaAddComponent, canActivate: [LoginGuard] },
+  { path: 'connections/:id/schemas/:schema/rename', component: SchemaRenameComponent, canActivate: [LoginGuard] },
   { path: 'connections/:id/schemas/:schema/delete', component: SchemaDeleteComponent, canActivate: [LoginGuard] },
   { path: 'connections/:id/tables/add', component: TableAddComponent, canActivate: [LoginGuard] },
   { path: 'connections/:id/tables/:schema/:table/delete', component: TableDeleteComponent, canActivate: [LoginGuard] },
