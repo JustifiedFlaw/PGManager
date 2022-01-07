@@ -3,13 +3,13 @@
         <div class="row p-3">
             <label class="form-label col-form-label col-sm-1" for="username">Username:</label>
             <div class="col-sm-6">
-                <input id="username" type="text" class="form-control" [(ngModel)]="user.username" autofocus />
+                <input id="username" name="username" type="text" class="form-control" [(ngModel)]="user.username" autofocus />
             </div>
         </div>
         <div class="row p-3">
             <label class="form-label col-form-label col-sm-1" for="password">Password:</label>
             <div class="col-sm-6">
-                <input id="password" type="password" class="form-control" [(ngModel)]="user.password" />
+                <input id="password" name="password" type="password" class="form-control" [(ngModel)]="user.password" />
             </div>
         </div>
         <div [hidden]="!loginFailed" class="bd-callout bd-callout-danger">
