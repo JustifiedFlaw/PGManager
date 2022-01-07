@@ -7,5 +7,9 @@ A web front end build in Angular to manage Postgresql databases
     * environments/environment.ts
     * environments/environment.prod.ts
 
+## Default User
+* Username: PGManager
+* Password: PGManager
+
 ## Work in progress
 * User management to be added
